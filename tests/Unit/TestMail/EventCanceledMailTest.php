@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
-class TestEventCanceledMail extends TestCase
+class EventCanceledMailTest extends TestCase
 {
     /**
      * Test Event Canceled email build with success

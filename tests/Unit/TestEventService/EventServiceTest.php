@@ -19,7 +19,7 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Event as EventFacade;
 
 
-class TestEventService extends TestCase
+class EventServiceTest extends TestCase
 {
     use RefreshDatabase;
 

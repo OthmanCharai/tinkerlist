@@ -2,28 +2,27 @@
 
 namespace Tests\Unit\TestMail;
 
-use App\Mail\InvitedEmail;
+use App\Mail\EventUpdatedEmail;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
-class TestInvitedMail extends TestCase
+class EventUpdatedMailTest extends TestCase
 {
-
     /**
-     * Test Invited email build with success
+     * Test Event Updated email build with success
      * @return void
      */
-    public function test_invited_email(): void
+    public function test_event_updated_email(): void
     {
         // Create a dummy event
         $event = Event::factory()
             ->for(User::factory())
             ->create();
 
-        // Create an instance of the InvitedEmail Mailable with the event
-        $mail = new InvitedEmail($event);
+        // Create an instance of the EventUpdatedEmail Mailable with the event
+        $mail = new EventUpdatedEmail($event);
 
         // Assert to see in view event title, date, time
         $mail->assertSeeInHtml($event->title);
@@ -33,23 +32,23 @@ class TestInvitedMail extends TestCase
     }
 
     /**
-     * test_invited_email_not_send
+     * test event updated email not send
      * @return void
      */
-    public function test_invited_email_not_send(): void
+    public function test_event_updated_email_not_send(): void
     {
         // Fake Mail to prevent mail from being sent
         Mail::fake();
 
-        // Assert a InvitedEmail was not sent...
-        Mail::assertNotSent(InvitedEmail::class);
+        // Assert a EventUpdatedEmail was not sent...
+        Mail::assertNotSent(EventUpdatedEmail::class);
     }
 
     /**
-     * test_invited_email_sent
+     * test event updated email send
      * @return void
      */
-    public function test_invited_email_sent(): void
+    public function test_event_updated_email_sent(): void
     {
         // Fake Mail to prevent mail from being sent
         Mail::fake();
@@ -60,15 +59,13 @@ class TestInvitedMail extends TestCase
             ->create();
 
 
-        // Send the InvitedEmail Mailable
-        Mail::to('recipient@example.com')->send(new InvitedEmail($event));
+        // Send the EventUpdatedEmail Mailable
+        Mail::to('recipient@example.com')->send(new EventUpdatedEmail($event));
 
         // Assert that the email was sent
-        Mail::assertSent(InvitedEmail::class, function ($mail) use ($event) {
+        Mail::assertSent(EventUpdatedEmail::class, function ($mail) use ($event) {
             return $mail->event->id === $event->id &&
                 $mail->hasTo('recipient@example.com');
         });
     }
-
-
 }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class TestAuthenticatedService extends TestCase
+class AuthenticatedServiceTest extends TestCase
 {
 
     use RefreshDatabase;
