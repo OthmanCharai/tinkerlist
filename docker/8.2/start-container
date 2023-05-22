@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#run migration with jwt secret
-php artisan jwt:secret
-php artisan migrate:fresh --seed
 
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
@@ -18,3 +15,7 @@ if [ $# -gt 0 ]; then
 else
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
+#run migration with jwt secret
+php artisan jwt:secret
+php artisan migrate:fresh --seed
+
