@@ -19,9 +19,9 @@ To run this application, ensure that you have Docker set up and running on your 
 2. Change to the project directory:
    ```bash 
    cd tinkerlist
-3. Create a copy of the .env.example file and rename it to .env:
+3. Create a copy of the .env.prod file and rename it to .env:
    ```bash 
-   cp .env.example .env
+   cp .env.prod .env
 4. Create a copy of the .env file and rename it to .env.testing:
    ```bash 
    cp .env .env.testing
