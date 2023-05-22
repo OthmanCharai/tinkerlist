@@ -12,13 +12,17 @@ chmod -R ugo+rw /.composer
 
 # install composer dependencies
 composer install
+
+#run migration with jwt secret
+php artisan jwt:secret
+php artisan migrate:fresh --seed
+
+
 if [ $# -gt 0 ]; then
     exec gosu $WWWUSER "$@"
 else
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
 
-#run migration with jwt secret
-php artisan jwt:secret
-php artisan migrate:fresh --seed
+
 
