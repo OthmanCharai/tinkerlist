@@ -31,3 +31,6 @@ To run this application, ensure that you have Docker set up and running on your 
    docker-compose up -d
 7. ```bash 
    Access the application at http://localhost:8070.
+8. Run Unit Test
+9. ```bash
+   php artisan test tests/Unit/
